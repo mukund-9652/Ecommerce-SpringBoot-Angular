@@ -1,0 +1,24 @@
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Units in Stock</th>
+                <th scope="col">Availability</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <th scope="row">{{ product.name }}</th>
+                <td>{{ product.unitPrice }}</td>
+                <td>{{ product.unitsInStock }}</td>
+                <td>
+                    <ng-container *ngIf="product.active; else activeFalse">Yes</ng-container>
+                    <ng-template #activeFalse>No</ng-template>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
