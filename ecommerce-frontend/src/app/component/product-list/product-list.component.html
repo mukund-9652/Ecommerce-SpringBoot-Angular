@@ -1,24 +1,17 @@
-<div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Unit Price</th>
-                <th scope="col">Units in Stock</th>
-                <th scope="col">Availability</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let product of products">
-                <th scope="row">{{ product.name }}</th>
-                <td>{{ product.unitPrice }}</td>
-                <td>{{ product.unitsInStock }}</td>
-                <td>
-                    <ng-container *ngIf="product.active; else activeFalse">Yes</ng-container>
-                    <ng-template #activeFalse>No</ng-template>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
+<div class="main-content">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Loop the Products -->
+                <div *ngFor="let product of products" class="col-md-3">
+                    <div class="product-box">
+                        <img src="{{ product.imageUrl }}" alt="{{ product.name }} Image" class="image-responsive">
+                        <h1>{{ product.name }}</h1>
+                        <div class="price">{{ product.unitPrice | currency:'USD' }}</div>
+                        <a href="#" class="primary-btn">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
