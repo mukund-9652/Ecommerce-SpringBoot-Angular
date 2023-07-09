@@ -101,4 +101,16 @@ public class ProductServiceImpl implements ProductService {
 		}
 	}
 
+	@Override
+	public List<ProductDTO> getAllProductByCategory(long id) {
+		// TODO Auto-generated method stub
+		List<Product> resultEntity=this.productRepository.findAllByCategory(id);
+		if(resultEntity.isEmpty()) {
+			throw new ResourceNotFoundException("Resource not found for given category");
+		}
+		List<ProductDTO> result=new ArrayList<ProductDTO>();
+		resultEntity.forEach(product -> result.add(productMapper.convertEntityToDto(product)));
+		return result;
+	}
+
 }

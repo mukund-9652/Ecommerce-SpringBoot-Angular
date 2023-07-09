@@ -52,6 +52,10 @@ public class ProductController {
 	public ProductDTO getProductById(@PathVariable long id){
 		return productServiceImpl.getProductById(id);
 	}
+	@GetMapping("/category:{id}")
+	public List<ProductDTO> getProductsByCategory(@PathVariable long id){
+		return productServiceImpl.getAllProductByCategory(id);
+	}
 	
 	@PutMapping("/id:{id}")
 	public ResponseEntity<String> updateProduct(@PathVariable long id, @RequestBody ProductDTO productDTO){
