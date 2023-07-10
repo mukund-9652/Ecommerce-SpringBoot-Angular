@@ -9,9 +9,24 @@ export class ProductService {
 
   private baseUrl = 'http://localhost:8081/api/products'
   constructor(private httpClient: HttpClient) { }
-  
+
+  getProductForSearch(searchMessage:string): Observable<Product[]> {
+    searchMessage=searchMessage.replace(' ','+')
+    const searchUrl = `${this.baseUrl}/search:${searchMessage}`
+    return this.httpClient.get<any[]>(searchUrl);
+  }
+
+  getProduct(id:number){
+    const getUrl=`${this.baseUrl}/id:${id}`;
+    return this.httpClient.get<any>(getUrl);
+  }
+
   getProductList(theCategoryId: number): Observable<Product[]> {
-    const searchUrl= `${this.baseUrl}/category:${theCategoryId}`
+    const searchUrl = `${this.baseUrl}/category:${theCategoryId}`
+    return this.httpClient.get<any[]>(searchUrl);
+  }
+  getAllProductList(): Observable<Product[]> {
+    const searchUrl = `${this.baseUrl}`
     return this.httpClient.get<any[]>(searchUrl);
   }
 }

@@ -1,6 +1,7 @@
 package com.project.ecommerce.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,11 @@ public class ProductController {
 	@GetMapping("/name:{name}")
 	public List<ProductDTO> getAllProductByName(@PathVariable String name){
 		return productServiceImpl.getAllProductByName(name);
+	}
+	
+	@GetMapping("/search:{searchMessage}")
+	public Set<ProductDTO> getAllProductforSearch(@PathVariable String searchMessage){
+		return productServiceImpl.getAllProductForSearch(searchMessage);
 	}
 	
 	@PostMapping("/add")

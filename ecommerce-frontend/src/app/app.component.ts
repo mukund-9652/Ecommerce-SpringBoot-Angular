@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductCategory } from './model/product-category';
 import { ProductCategoryService } from './services/product-category.service';
+import { ProductService } from './services/product.service';
 
 @Component({
   selector: 'app-root',
@@ -10,20 +11,21 @@ import { ProductCategoryService } from './services/product-category.service';
 export class AppComponent {
   title = 'ecommerce-frontend';
 
-  productCategory:ProductCategory[]=[];
+  productCategory: ProductCategory[] = [];
 
-  constructor(private productCategoryService:ProductCategoryService){}
+  constructor(private productCategoryService: ProductCategoryService, private productService: ProductService) { }
 
-  ngOnInit(){
-   this.listCategories();
+  ngOnInit() {
+    this.listCategories();
   }
 
-  private listCategories(){
+  private listCategories() {
     this.productCategoryService.getProductCategoryList().subscribe(
-      data=>{
-        console.log(data);
-        this.productCategory=data;
+      data => {
+        this.productCategory = data;
       }
     );
   }
+
+
 }

@@ -9,39 +9,72 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
+  
+  products: Product[] = [];
+  currentCategoryId: number = 1;
+  searchMode: boolean = false;
+  searchMessage: string = "";
 
-  products: Product[] =[];
-  currentCategoryId: number=1;
+  constructor(private productService: ProductService,
+    private route: ActivatedRoute) { }
 
-  constructor(private productService:ProductService,
-              private route:ActivatedRoute){}
-
-  ngOnInit():void{
-    this.route.paramMap.subscribe(() =>{
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(() => {
       this.listProducts();
     });
+    this.currentCategoryId = 1;
+    this.searchMode = false;
+    this.searchMessage=  "";
   }
 
   private listProducts() {
 
-    //check if id param is available
-
-    const hasCategoryId:boolean=this.route.snapshot.paramMap.has('id');
-
-    if(hasCategoryId){
-      //get the 'id' param string and convert it to number
-
-      this.currentCategoryId= +this.route.snapshot.paramMap.get('id')!;
+    this.searchMode = this.route.snapshot.paramMap.has('searchMessage');
+    if (this.searchMode) {
+      this.handleSearchProducts();
     }
-    else{
-      // setting default catgory 1
-      this.currentCategoryId=1;
+    else {
+      this.handleListProducts();
     }
+  }
 
-    this.productService.getProductList(this.currentCategoryId).subscribe(
+  handleSearchProducts() {
+    const keyWord: string = this.route.snapshot.paramMap.get('searchMessage')!;
+    this.productService.getProductForSearch(keyWord).subscribe(
       data => {
-        this.products=data;
+        if (data.length > 0) {
+          this.products = data;
+        }
+        else{
+          this.searchMessage= `No Product of ${keyWord} Found!!`
+        }
       }
     );
+  }
+
+  handleListProducts() {
+    //check if id param is available
+
+    const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
+
+    if (hasCategoryId) {
+      //get the 'id' param string and convert it to number
+
+      this.currentCategoryId = +this.route.snapshot.paramMap.get('id')!;
+      this.productService.getProductList(this.currentCategoryId).subscribe(
+        data => {
+          this.products = data;
+        }
+      );
+    }
+    else {
+      // setting default catgory 1
+      this.productService.getAllProductList().subscribe(
+        data => {
+          const jumbledData = data.sort(() => Math.random() - 0.8);
+          this.products = jumbledData;
+        }
+      );
+    }
   }
 }

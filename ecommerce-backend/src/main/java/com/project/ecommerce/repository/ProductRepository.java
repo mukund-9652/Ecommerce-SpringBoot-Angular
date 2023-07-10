@@ -9,6 +9,7 @@ import com.project.ecommerce.entity.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 	
+		
 		@Query(value = "SELECT * FROM PRODUCT WHERE NAME LIKE %:name% ", nativeQuery = true)
 		List<Product> findAllByName(String name);
 		

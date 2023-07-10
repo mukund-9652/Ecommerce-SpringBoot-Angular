@@ -1,6 +1,7 @@
 package com.project.ecommerce.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -15,5 +16,5 @@ public interface ProductService {
 	boolean updateProduct(ProductDTO productDTO);
 	boolean deleteProduct(long id);
 	List<ProductDTO> getAllProductByCategory(long id);
-
+	Set<ProductDTO> getAllProductForSearch(String searchMessage);
 }
