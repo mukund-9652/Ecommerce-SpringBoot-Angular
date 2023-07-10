@@ -3,10 +3,6 @@ package com.project.ecommerce.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
 public class ProductDTO {
 	
 
