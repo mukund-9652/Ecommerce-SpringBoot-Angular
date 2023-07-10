@@ -126,20 +126,25 @@ public class ProductServiceImpl implements ProductService {
 		}
 		else {
 			if(searchMessage.contains("+")) {
-				List<String> searchSplit=new ArrayList<>(Arrays.asList(searchMessage.split("\\+")));
+				Set<String> searchSplit = new HashSet<>(Arrays.asList(searchMessage.split("\\+")));
 				allEntities.forEach(product -> {
-					searchSplit.forEach(search -> {
-						if (product.getSku().toLowerCase().contains(search.toLowerCase())
-								|| product.getName().toLowerCase().contains(search.toLowerCase())) {
-							resultEntity.add(product);
-						}
-					});
+				    for (String search : searchSplit) {
+				        if (product.getSku().toLowerCase().contains(search.toLowerCase())
+				                || product.getName().toLowerCase().contains(search.toLowerCase())
+								|| product.getCategory().getCategory_name().toLowerCase().contains(searchMessage.toLowerCase())
+				        		) {
+				            resultEntity.add(product);
+				            break;
+				        }
+				    }
 				});
 			}
 			else {
 				allEntities.forEach(product -> {
 					if (product.getSku().toLowerCase().contains(searchMessage.toLowerCase())
-							|| product.getName().toLowerCase().contains(searchMessage.toLowerCase())) {
+							|| product.getName().toLowerCase().contains(searchMessage.toLowerCase())
+							|| product.getCategory().getCategory_name().toLowerCase().contains(searchMessage.toLowerCase())
+							) {
 						resultEntity.add(product);
 					}
 				});

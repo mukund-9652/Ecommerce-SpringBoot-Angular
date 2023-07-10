@@ -10,7 +10,7 @@
                             <h1>{{ product.name }}</h1>
                         </a>
                         <div class="price">{{ product.unitPrice | currency:'USD' }}</div>
-                        <a routerLink="/products/details/{{ product.id }}" class="primary-btn">View Product</a>
+                        <button class="btn btn-primary btn-sm" (click)="addToCart(product)">Add Product</button>
                     </div>
                 </div>
             </div>
