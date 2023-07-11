@@ -18,13 +18,17 @@ export class CartService {
     let existingInCart!: CartItem;
 
     if (this.cartItems.length > 0) {
-      existingInCart = this.cartItems.find(item => {
-        item.id === cartItem.id
-      })!;
+      for(let i=0;i<this.cartItems.length;i++){
+        if(this.cartItems[i].id===cartItem.id){
+          existingInCart=this.cartItems[i];
+          break;
+        }
+      }
       existInCart = (existingInCart != undefined);
     }
 
     if (existInCart) {
+      //console.log(existingInCart);
       existingInCart.quantity++;
     }
     else {
@@ -42,7 +46,7 @@ export class CartService {
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
 
-    this.logCartData(totalPriceValue, totalQuantityValue);
+    //this.logCartData(totalPriceValue, totalQuantityValue);
   }
 
   logCartData(totalPriceValue: number, totalQuantityValue: number) {
