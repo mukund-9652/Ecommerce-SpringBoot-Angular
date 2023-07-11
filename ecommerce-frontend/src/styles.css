@@ -741,7 +741,7 @@ select {
 
 table.table.table-bordered {
     border: 1px solid #ccc;
-    background: #fff
+    background: #fff;
 }
 
 .table-bordered td,
@@ -761,7 +761,12 @@ table.table.table-bordered th {
 }
 
 .table tr td{
-    padding: 10px 0;
+    padding: 10px 5px;
+    border-width:1px;
+}
+
+.table tr td button{
+    border-width: 1px;
 }
 
 .items select {

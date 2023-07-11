@@ -43,7 +43,8 @@ export class CartDetailsComponent {
     }
   }
 
-  removeCartItem(){
-
+  removeCartItem(cartItem:CartItem){
+    this.cartService.removeCartItem(cartItem);
+    this.cartService.computeCartTotal();
   }
 }

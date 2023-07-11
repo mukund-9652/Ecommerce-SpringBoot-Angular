@@ -75,8 +75,8 @@ export class ProductListComponent {
       // setting default catgory 1
       this.productService.getAllProductList().subscribe(
         data => {
-          const jumbledData = data.sort(() => Math.random() - 0.8);
-          this.products = jumbledData;
+          
+          this.products = data;
         }
       );
     }
