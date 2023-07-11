@@ -9,12 +9,41 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CartDetailsComponent {
   cartItems:CartItem[]=[]
+  totalPrice:number=0.00;
+  totalQuantity: number=0
   constructor(private cartService:CartService){}
   ngOnInit(){
     this.getCartItems();
   }
   getCartItems() {
     this.cartItems=this.cartService.cartItems;
-    console.log(this.cartItems)
+    
+    this.cartService.totalPrice.subscribe(data=>{
+      this.totalPrice=data;
+    });
+    this.cartService.totalQuantity.subscribe(data=>{
+      this.totalQuantity=data;
+    });
+    //console.log(this.cartItems)
+    this.cartService.computeCartTotal();
+  }
+
+  incrementQuantity(cartItem:CartItem){
+    cartItem.quantity++;
+    this.cartService.computeCartTotal();
+  }
+  decrementQuantity(cartItem:CartItem){
+    if(cartItem.quantity>1){
+      cartItem.quantity--;
+      this.cartService.computeCartTotal();
+    }
+    else{
+      this.cartService.removeCartItem(cartItem);
+      this.cartService.computeCartTotal();
+    }
+  }
+
+  removeCartItem(){
+
   }
 }

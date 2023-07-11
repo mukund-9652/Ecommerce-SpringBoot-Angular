@@ -760,6 +760,10 @@ table.table.table-bordered th {
     padding-right: 1px
 }
 
+.table tr td{
+    padding: 10px 0;
+}
+
 .items select {
     width: 100px;
     height: 40px;

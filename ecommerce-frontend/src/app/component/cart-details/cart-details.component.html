@@ -16,13 +16,21 @@
                     </td>
                     <td>
                         <div class="items">
-                            <label>Quantity</label> 
-                            <select>
-                                <option selected>{{ item.quantity }}</option>
-                            </select>
+                            <label>Quantity</label>:
+                            <button class="btn btn-primary mx-3" (click)="incrementQuantity(item);"><i class="fas fa-plus"></i></button>
+                            {{ item.quantity }}
+                            <button class="btn btn-primary  mx-3" (click)="decrementQuantity(item);"><i class="fas fa-minus"></i></button>
                         </div>
-                        <p>Sub-total {{ item.unitPrice * item.quantity }}</p>
+                        <p>Sub-total: {{ (item.unitPrice * item.quantity).toFixed(2) | currency:'USD' }}</p>
                         <a href="#" class="primary-btn">Remove</a>
+                    </td>
+                </tr>
+                <tr >
+                    <td colspan="2"></td>
+                    <td class="pt-3"><b>Total Quantity: {{ totalQuantity }}</b>
+                        <p>Shipping FREE</p>
+                        <b>Total Price: {{ totalPrice | currency:'USD'}}</b><br>
+                        <a href="checkout-page.html" class="primary-btn">Checkout</a>
                     </td>
                 </tr>
             </table>

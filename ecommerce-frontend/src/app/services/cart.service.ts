@@ -7,12 +7,31 @@ import { Subject } from 'rxjs';
 })
 export class CartService {
   cartItems: CartItem[] = [];
-
+  
   totalPrice: Subject<number> = new Subject<number>;
   totalQuantity: Subject<number> = new Subject<number>;
-
+  
   constructor() { }
+  
+  removeCartItem(cartItem: CartItem) {
+    let existInCart: boolean = false;
+    let existingInCartIndex!: number;
 
+    if (this.cartItems.length > 0) {
+      for(let i=0;i<this.cartItems.length;i++){
+        if(this.cartItems[i].id===cartItem.id){
+          existInCart = true;
+          existingInCartIndex=i;
+          break;
+        }
+      }
+    }
+
+    if (existInCart) {
+      //console.log(existingInCart);
+      this.cartItems.splice(existingInCartIndex,1)
+    }  
+  }
   addToCart(cartItem: CartItem) {
     let existInCart: boolean = false;
     let existingInCart!: CartItem;
