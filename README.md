@@ -1,27 +1,42 @@
-# EcommerceFrontend
+<h1 align="center">Welcome to E-Commerce-App 👋</h1>
+<p>
+  <a href="https://github.com/mukund-9652/Ecommerce-SpringBoot-Angular" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+</p>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.4.
+> The project is a working E-Commerce application built with Angular, SpringBoot and MySQL.
 
-## Development server
+## Install
+
+```sh
+npm install
+```
+
+## Angular
+### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+### Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Usage
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+First run the spring boot app with the necessary command then run the Angular App with 
+```sh
+  ng start
+```
 
-## Running unit tests
+## Author
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+👤 **Mukund R S**
 
-## Running end-to-end tests
+* Website: https://mukund-9652.github.io/MyResume/
+* Github: [@mukund-9652](https://github.com/mukund-9652)
+* LinkedIn: [@mukundrs](https://linkedin.com/in/mukundrs)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Show your support
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Give a ⭐️ if this project helped you!
