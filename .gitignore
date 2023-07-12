@@ -74,3 +74,4 @@ testem.log
 .DS_Store
 Thumbs.db
 application-local.properties
+environment.prod.ts
